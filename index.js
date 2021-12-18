@@ -27,7 +27,7 @@ client.on('message', async message => {
             .setColor("#ffff00")
             .setTitle("KygekTeam Bot Help")
             .setDescription("Commands")
-            .setAuthor("KygekTeam Bot", "https://media.discordapp.net/attachments/735990976471891978/860882384479846400/KygekTeam_Logo_2021_Icon2000x2000_Gray.png?width=406&height=406", "https://kygekteam.org")
+            .setAuthor("KygekTeam Bot", "https://media.discordapp.net/attachments/735990976471891978/860882384479846400/KygekTeam_Logo_2021_Icon2000x2000_Gray.png?width=406&height=406", "https://kygek.team")
             .addFields(
                 {name: 'Plugins', value: `${prefix}plugins, ${prefix}plugin <plugin>, ${prefix}changelogs <plugin>`, inline: true},
                 {name: 'Utilities', value: `${prefix}faq <number>, ${prefix}clear <messages>`, inline: true},
@@ -37,7 +37,7 @@ client.on('message', async message => {
             .setImage("https://media.discordapp.net/attachments/735990976471891978/860882384479846400/KygekTeam_Logo_2021_Icon2000x2000_Gray.png?width=75&height=75");
         message.channel.send(helpEmbed);
     } else if (command == "plugins") {
-        const array = await fetch('https://api.kygekteam.org/names').then(response => response.json());
+        const array = await fetch('https://api.kygek.team/names').then(response => response.json());
         var msg = "Plugins:"
         await array.forEach((name) => {
             msg = msg + "\n" + name;
@@ -48,11 +48,11 @@ client.on('message', async message => {
             if (!args.length) {
                 return message.reply("You didn't provide a plugin!");
             }
-            const plugin = await fetch('https://api.kygekteam.org/plugin/' + args[0]).then(response => response.json());
+            const plugin = await fetch('https://api.kygek.team/plugin/' + args[0]).then(response => response.json());
             const name = plugin.name;
             const desc = plugin.description;
             const author = plugin.author;
-            var msg = "Plugin: " + name + "\n" + desc + "\nBy " + author + "\nhttps://kygekteam.org/" + plugin.name;
+            var msg = "Plugin: " + name + "\n" + desc + "\nBy " + author + "\nhttps://kygek.team/" + plugin.name;
             if (plugin.downloads.poggit != undefined) {
                 msg = msg + "\nPoggit: " + plugin.downloads.poggit;
             }
@@ -84,7 +84,7 @@ client.on('message', async message => {
             if (!args.length) {
                 return message.reply("You didn't provide a plugin!");
             }
-            const plugin = await fetch('https://api.kygekteam.org/plugin/' + args[0]).then(response => response.json());
+            const plugin = await fetch('https://api.kygek.team/plugin/' + args[0]).then(response => response.json());
             var name = plugin.name;
             var msg = "Changelogs for plugin " + name;
             if (plugin.changelogs != null) {
